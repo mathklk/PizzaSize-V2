@@ -30,22 +30,46 @@
         </div>
     </div>
 
-
 	<md-elevated-card>
-		<div class="card-content">
-			<h2>Titel</h2>
-			<p>Lorem ipsum dolor sit amet</p>
+		<div class="row">
+			<md-outlined-text-field
+				type="vnumber"
+				label="Diameter"
+				value=""
+				suffix-text="cm"
+				validation-type="number"
+			></md-outlined-text-field>
+			<md-outlined-text-field
+				type="vnumber"
+				label="Price"
+				value=""
+				suffix-text="&euro;"
+				validation-type="number"
+			></md-outlined-text-field>
+			<md-filled-tonal-button>Add</md-filled-tonal-button>
 		</div>
+		<p>Lorem ipsum dolor sit amet</p>
 	</md-elevated-card>
 
 	<a href="https://github.com/mathklk/PizzaSize/" class="github-icon">
-		<img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="GitHub" width="50" height="50">
+		<img id="github-logo" src="static/github-mark-white.svg" alt="GitHub" width="50" height="50">
 	</a>
 
 	<script>
+		// Dark mode switching
+		ghLogo = document.getElementById('github-logo');
 		document.getElementById('darkModeToggle').addEventListener('change', (event) => {
 			document.body.classList.toggle('dark',   event.target.selected);
 			document.body.classList.toggle('light', !event.target.selected);
+			ghLogo.src = event.target.selected ? 'static/github-mark-white.svg' : 'static/github-mark.svg';
+		});
+
+		numeric_inputs = document.querySelectorAll('input[type="vnumber"]');
+		numeric_inputs.forEach((input) => {
+			input.addEventListener('input', function(e) {
+				// Replace any non-digit characters with an empty string
+				e.target.value = e.target.value.replace(/\D/g, '');
+			});
 		});
 	</script>
 </body>
