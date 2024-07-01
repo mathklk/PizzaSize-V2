@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<head>
+    <title>Material Web Components Example</title>
+
+    <script type="module" src="bundle.js"></script>
+	<!-- <script type="importmap">
+		{
+			"imports": {
+				"@material/web/": "https://esm.run/@material/web/"
+			}
+		}
+	</script>
+	<script type="module">
+		import '@material/web/all.js';
+		import '@material/web/labs/card/elevated_card.js';
+		import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+	
+		document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
+	</script> -->
+
+<!-- Get roboto font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
+
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+</head>
+<body class="dark">
+	<div style="display:flex; flex-direction: row; justify-content: right">
+		<label style="margin: 5px">Dark Mode </label>
+		<md-switch selected id="darkModeToggle"></md-switch>
+	</div>
+
+	<md-outlined-text-field label="Name" value="Max Mustermann">
+	</md-outlined-text-field>
+
+	<!-- <md-outlined-select>
+		<md-select-option aria-label="blank"></md-select-option>
+		<md-select-option selected value="apple">
+		  <div slot="headline">Apple</div>
+		</md-select-option>
+		<md-select-option value="apricot">
+		  <div slot="headline">Apricot</div>
+		</md-select-option>
+	</md-outlined-select> -->
+
+	<md-elevated-card>
+		<div class="card-content">
+			<h2>Titel</h2>
+			<p>Lorem ipsum dolor sit amet</p>
+		</div>
+	</md-elevated-card>
+
+	<script>
+		document.getElementById('darkModeToggle').addEventListener('change', (event) => {
+			document.body.classList.toggle('dark',   event.target.selected);
+			document.body.classList.toggle('light', !event.target.selected);
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+// index.js
+// import '@material/web/button/filled-button.js';
+// import '@material/web/button/outlined-button.js';
+// import '@material/web/checkbox/checkbox.js';
+// import '@material/web/switch/switch.js';
+// import '@material/web/select/outlined-select.js';
+import '@material/web/all.js';
+import '@material/web/labs/card/elevated-card.js';

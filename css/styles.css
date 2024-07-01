@@ -1,0 +1,42 @@
+/*import styles*/
+@import url("./dark.css");
+@import url("./light.css");
+
+/* :root {
+	--mdc-theme-primary: #6200ee;
+	--mdc-theme-secondary: #03dac6;
+	--mdc-theme-background: #fff;
+	--mdc-theme-surface: #fff;
+	--mdc-theme-on-primary: #fff;
+	--mdc-theme-on-secondary: #000;
+	--mdc-theme-on-surface: #000;
+} */
+
+/* .dark-mode {
+	--mdc-theme-background: #121212;
+	--mdc-theme-surface: #333;
+	--mdc-theme-on-surface: #fff;
+} */
+
+:root {
+	--md-ref-typeface-brand: 'Open Sans';
+	--md-ref-typeface-plain: system-ui;
+}
+ 
+body {
+	background-color: var(--md-sys-color-background);
+	color: var(--md-sys-color-on-surface);
+	font-family: var(--md-ref-typeface-brand), var(--md-ref-typeface-plain), 'Roboto', sans-serif;
+}
+
+.centered-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center; /* Vertically centers the content */
+    align-items: center; /* Horizontally centers the content, if needed */
+}
+
+md-elevated-card {
+	padding: 16px;
+	margin: 16px;
+}
