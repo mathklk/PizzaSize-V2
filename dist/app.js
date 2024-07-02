@@ -108,7 +108,8 @@ function newElement() {
 	updateTable();
 } 
 
-// Hide the comparison checkbox by default
-document.getElementById("compare-div").style.display = "none"
+// When site finished loading
+document.addEventListener('DOMContentLoaded', function() {
+	// updateTable();
+});
 
-updateTable();

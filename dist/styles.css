@@ -1,0 +1,120 @@
+/*import styles*/
+@import url("./css-theme/dark.css");
+@import url("./css-theme/light.css");
+
+:root {
+	--md-ref-typeface-brand: 'Open Sans';
+	--md-ref-typeface-plain: system-ui;
+	--catalog-shape-l: 12px;
+	--catalog-shape-xl: 16px;
+}
+
+body {
+	background-color: var(--md-sys-color-background);
+	color: var(--md-sys-color-on-surface);
+	font-family: var(--md-ref-typeface-brand), var(--md-ref-typeface-plain), 'Roboto', sans-serif;
+
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.center-horizontally {
+    flex-grow: 1;
+    text-align: center;
+}
+
+.header-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.dark-mode-switch {
+    position: absolute;
+    right: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin: 5px;
+	align-items: center;
+}
+
+md-elevated-card {
+	padding: var(--catalog-shape-xl);
+	margin: var(--catalog-shape-xl);
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: var(--catalog-shape-l);
+}
+
+.row-left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: left;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: var(--catalog-shape-l);
+}
+
+.github-icon {
+	position: absolute;
+	bottom: var(--catalog-shape-l);
+	right: var(--catalog-shape-l);
+}
+
+table {
+	border-spacing: 0;
+	width: 100%;
+}
+
+td, th {
+	border-block-start: 1px solid var(--md-sys-color-outline-variant);
+	border-inline-start: 1px solid var(--md-sys-color-outline-variant);
+	padding: 8px 16px;
+}
+
+tr:last-of-type td,
+tr:last-of-type th {
+	border-block-end: 1px solid var(--md-sys-color-outline-variant);
+}
+
+tr td:last-of-type,
+tr th:last-of-type {
+	border-inline-end: 1px solid var(--md-sys-color-outline-variant);
+}
+
+th {
+	background-color: var(--md-sys-color-surface-container-high);
+	text-shadow: 0 1px 1px var(--md-sys-color-surface-container-lowest);
+	color: var(--md-sys-color-on-surface);
+	font-size: 1.25em;
+}
+
+tr th:first-of-type {
+	border-start-start-radius: var(--catalog-shape-xl);
+}
+
+tr th:last-of-type {
+	border-start-end-radius: var(--catalog-shape-xl);
+}
+
+tr:last-of-type td:first-of-type {
+	border-end-start-radius: var(--catalog-shape-xl);
+}
+
+tr:last-of-type td:last-of-type {
+	border-end-end-radius: var(--catalog-shape-xl);
+}

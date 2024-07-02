@@ -6,7 +6,7 @@
 	<script src="app.js"></script>
 	
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
-	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body class="dark">
 
@@ -14,68 +14,61 @@
         <h1 class="center-horizontally">Pizza Size Calculator</h1>
         <div class="dark-mode-switch">
             <label>Dark Mode&nbsp;</label>
-            <md-switch selected id="darkModeToggle"></md-switch>
+            <md-switch selected id="dark-mode-switch"></md-switch>
         </div>
     </div>
 
 	<md-elevated-card>
-		<div class="row">
-			<md-outlined-text-field
-				id="diameter-input"
-				type="vnumber"
-				label="Diameter"
-				value=""
-				suffix-text="cm"
-				validation-type="number"
-			></md-outlined-text-field>
-			<md-outlined-text-field
-				id="price-input"
-				type="vnumber"
-				label="Price"
-				value=""
-				suffix-text="&euro;"
-				validation-type="number"
-			></md-outlined-text-field>
-			<md-filled-tonal-button
-				onclick="newElement()"
-			>Add</md-filled-tonal-button>
-		</div>
-		<p>Lorem ipsum dolor sit amet</p>
-		
-		<div id="compare-div" class="row-left">
-			<label>Compare&nbsp;</label>
-			<md-switch id="compare-switch"></md-switch>
+		<div class="column">
+
+			<div class="row">
+				<md-outlined-text-field
+					id="diameter-input"
+					type="vnumber"
+					label="Diameter"
+					value=""
+					suffix-text="cm"
+					validation-type="number"
+				></md-outlined-text-field>
+				<md-outlined-text-field
+					id="price-input"
+					type="vnumber"
+					label="Price"
+					value=""
+					suffix-text="&euro;"
+					validation-type="number"
+				></md-outlined-text-field>
+				<md-filled-tonal-button
+					onclick="newElement()"
+				>Add</md-filled-tonal-button>
+			</div>
+			<table id="table">
+				<thead>
+					<tr>
+						<th>Diameter</th>
+						<th>Price</th>
+						<th>Area</th>
+						<th>Price per area</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>30 cm</td>
+						<td>10 &euro;</td>
+						<td>706.86 cm<sup>2</sup></td>
+						<td>0.014 &euro;/cm<sup>2</sup></td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+			<div id="compare-div" class="row-left" style="display: none">
+				<label>Compare&nbsp;</label>
+				<md-switch id="compare-switch"></md-switch>
+			</div>
 		</div>
 	</md-elevated-card>
 
-	<md-data-table aria-label="Desserts" density="" page-sizes="[10, 25, 100]" page-sizes-label="Rows per page:" first-row-of-page="" current-page-size="" last-row-of-page="" pagination-total-label=":firstRow-:lastRow of :totalRows">
-		<md-data-table-column>Dessert</md-data-table-column>
-		<md-data-table-column>Calories</md-data-table-column>
-		<md-data-table-column>Fat</md-data-table-column>
-		<md-data-table-column>Carbs</md-data-table-column>
-		<md-data-table-column>Protein (g)</md-data-table-column>
-		<md-data-table-row>
-		  <md-data-table-cell>Frozen yogurt</md-data-table-cell>
-		  <md-data-table-cell type="number">159</md-data-table-cell>
-		  <md-data-table-cell type="number">6.0</md-data-table-cell>
-		  <md-data-table-cell type="number">24</md-data-table-cell>
-		  <md-data-table-cell type="number">4.0</md-data-table-cell>
-		</md-data-table-row>
-		<md-data-table-row>
-		  <md-data-table-cell>Ice cream sandwich</md-data-table-cell>
-		  <md-data-table-cell type="number">237</md-data-table-cell>
-		  <md-data-table-cell type="number">9.0</md-data-table-cell>
-		  <md-data-table-cell type="number">37</md-data-table-cell>
-		  <md-data-table-cell type="number">4.3</md-data-table-cell>
-		</md-data-table-row>
-		<md-data-table-row>
-		  <md-data-table-cell>Eclair</md-data-table-cell>
-		  <md-data-table-cell type="number">262</md-data-table-cell>
-		  <md-data-table-cell type="number">16.0</md-data-table-cell>
-		  <md-data-table-cell type="number">24</md-data-table-cell>
-		  <md-data-table-cell type="number">6.0</md-data-table-cell>
-		</md-data-table-row>
-	  </md-data-table>
 
 	<a href="https://github.com/mathklk/PizzaSize/" class="github-icon">
 		<img id="github-logo" src="static/github-mark-white.svg" alt="GitHub" width="50" height="50">
@@ -84,7 +77,7 @@
 	<script>
 		// Dark mode switching
 		ghLogo = document.getElementById('github-logo');
-		document.getElementById('darkModeToggle').addEventListener('change', (event) => {
+		document.getElementById('dark-mode-switch').addEventListener('change', (event) => {
 			document.body.classList.toggle('dark',   event.target.selected);
 			document.body.classList.toggle('light', !event.target.selected);
 			ghLogo.src = event.target.selected ? 'static/github-mark-white.svg' : 'static/github-mark.svg';
