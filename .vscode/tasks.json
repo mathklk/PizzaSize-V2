@@ -1,0 +1,29 @@
+{
+	// See https://go.microsoft.com/fwlink/?LinkId=733558
+	// for the documentation about the tasks.json format
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Npx-Rollup",
+			"type": "shell",
+			"command": "cmd.exe",
+            "args": [
+				"/c",
+				"npx",
+				"rollup",
+                "-p",
+                "@rollup/plugin-node-resolve",
+				"material_imports.js",
+				"-o",
+				"dist/material.js"
+            ],
+			"group": "build",
+			"presentation": {
+				// Reveal the output only if unrecognized errors occur.
+				"reveal": "silent"
+			},
+			// Use the standard MS compiler pattern to detect errors, warnings and infos
+			"problemMatcher": "$msCompile"
+		}
+	]
+}

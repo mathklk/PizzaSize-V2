@@ -1,27 +1,15 @@
 <!DOCTYPE html>
 <head>
-    <title>Material Web Components Example</title>
+    <title>Pizza Size Calculator</title>
 
-    <script type="module" src="bundle.js"></script>
-	<!-- <script type="importmap">
-		{
-			"imports": {
-				"@material/web/": "https://esm.run/@material/web/"
-			}
-		}
-	</script>
-	<script type="module">
-		import '@material/web/all.js';
-		import '@material/web/labs/card/elevated_card.js';
-		import {styles as typescaleStyles} from '@material/web/typography/md-typescale-styles.js';
+    <script type="module" src="material.js"></script>
+	<script src="app.js"></script>
 	
-		document.adoptedStyleSheets.push(typescaleStyles.styleSheet);
-	</script> -->
-
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 </head>
 <body class="dark">
+
 	<div class="header-container">
         <h1 class="center-horizontally">Pizza Size Calculator</h1>
         <div class="dark-mode-switch">
@@ -33,6 +21,7 @@
 	<md-elevated-card>
 		<div class="row">
 			<md-outlined-text-field
+				id="diameter-input"
 				type="vnumber"
 				label="Diameter"
 				value=""
@@ -40,16 +29,53 @@
 				validation-type="number"
 			></md-outlined-text-field>
 			<md-outlined-text-field
+				id="price-input"
 				type="vnumber"
 				label="Price"
 				value=""
 				suffix-text="&euro;"
 				validation-type="number"
 			></md-outlined-text-field>
-			<md-filled-tonal-button>Add</md-filled-tonal-button>
+			<md-filled-tonal-button
+				onclick="newElement()"
+			>Add</md-filled-tonal-button>
 		</div>
 		<p>Lorem ipsum dolor sit amet</p>
+		
+		<div id="compare-div" class="row-left">
+			<label>Compare&nbsp;</label>
+			<md-switch id="compare-switch"></md-switch>
+		</div>
 	</md-elevated-card>
+
+	<md-data-table aria-label="Desserts" density="" page-sizes="[10, 25, 100]" page-sizes-label="Rows per page:" first-row-of-page="" current-page-size="" last-row-of-page="" pagination-total-label=":firstRow-:lastRow of :totalRows">
+		<md-data-table-column>Dessert</md-data-table-column>
+		<md-data-table-column>Calories</md-data-table-column>
+		<md-data-table-column>Fat</md-data-table-column>
+		<md-data-table-column>Carbs</md-data-table-column>
+		<md-data-table-column>Protein (g)</md-data-table-column>
+		<md-data-table-row>
+		  <md-data-table-cell>Frozen yogurt</md-data-table-cell>
+		  <md-data-table-cell type="number">159</md-data-table-cell>
+		  <md-data-table-cell type="number">6.0</md-data-table-cell>
+		  <md-data-table-cell type="number">24</md-data-table-cell>
+		  <md-data-table-cell type="number">4.0</md-data-table-cell>
+		</md-data-table-row>
+		<md-data-table-row>
+		  <md-data-table-cell>Ice cream sandwich</md-data-table-cell>
+		  <md-data-table-cell type="number">237</md-data-table-cell>
+		  <md-data-table-cell type="number">9.0</md-data-table-cell>
+		  <md-data-table-cell type="number">37</md-data-table-cell>
+		  <md-data-table-cell type="number">4.3</md-data-table-cell>
+		</md-data-table-row>
+		<md-data-table-row>
+		  <md-data-table-cell>Eclair</md-data-table-cell>
+		  <md-data-table-cell type="number">262</md-data-table-cell>
+		  <md-data-table-cell type="number">16.0</md-data-table-cell>
+		  <md-data-table-cell type="number">24</md-data-table-cell>
+		  <md-data-table-cell type="number">6.0</md-data-table-cell>
+		</md-data-table-row>
+	  </md-data-table>
 
 	<a href="https://github.com/mathklk/PizzaSize/" class="github-icon">
 		<img id="github-logo" src="static/github-mark-white.svg" alt="GitHub" width="50" height="50">
@@ -64,11 +90,29 @@
 			ghLogo.src = event.target.selected ? 'static/github-mark-white.svg' : 'static/github-mark.svg';
 		});
 
-		numeric_inputs = document.querySelectorAll('input[type="vnumber"]');
-		numeric_inputs.forEach((input) => {
+		document.querySelectorAll('[type="vnumber"]').forEach((input) => {
 			input.addEventListener('input', function(e) {
-				// Replace any non-digit characters with an empty string
-				e.target.value = e.target.value.replace(/\D/g, '');
+				// Allow numbers, a single dot or comma for decimal, but not 0 or negative numbers alone
+				let value = e.target.value;
+				// Replace comma with dot for consistency
+				value = value.replace(',', '.');
+				// Check if the value is not allowed (0, negative, or multiple leading zeros)
+				if (value === '0' || value.match(/^-\d*\.?\d*$/) || value.match(/^0\d+/)) {
+					e.target.value = value.substring(0, value.length - 1);
+					return;
+				}
+				// Remove any character that is not a digit or dot
+				value = value.replace(/[^\d.]/g, '');
+				// Handle multiple dots and limit decimal places to two
+				let parts = value.split('.');
+				if (parts.length > 2) {
+					value = parts.shift() + '.' + parts.join('');
+				}
+				if (parts.length === 2) {
+					parts[1] = parts[1].substring(0, 2); // Limit to two decimal places
+					value = parts.join('.');
+				}
+				e.target.value = value;
 			});
 		});
 	</script>

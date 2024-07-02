@@ -65,8 +65,14 @@ md-elevated-card {
 	flex-direction: row;
 	justify-content: center;
 	align-items: center;
-	/* small space betwen items */
 	gap: 10px;
+}
+
+.row-left {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: left;
 }
 
 .github-icon {
