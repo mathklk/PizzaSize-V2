@@ -28,63 +28,54 @@ function updateTable() {
 	}
 	// add header
 	var header = table.createTHead();
-	var headerRow = header.insertRow(0);
-	var j = 0;
-	headerRow.insertCell(j++).innerHTML = "Diameter";
-	headerRow.insertCell(j++).innerHTML = "Price";
-	headerRow.insertCell(j++).innerHTML = "Area";
-	headerRow.insertCell(j++).innerHTML = "Price per area";
-	headerRow.insertCell(j++).innerHTML = "";
-
-	// Wether to compare entries to previous entry
-	var doCompare = document.getElementById("compare-input").selected
+	header.innerHTML = `
+        <tr>
+            <th>Diameter</th>
+            <th>Price</th>
+            <th>Area</th>
+            <th>Price per area</th>
+            <th></th>
+        </tr>
+    `;
 
 	// add entries
-	var body = table.createTBody();
-	for (var i = 0; i < elements.length; i++) {
-		var row = body.insertRow(-1);
-		var j = 0;
-		var diameter = elements[i].diameter + " cm";
-		var price    = elements[i].price + " €";
-		var area     = elements[i].area.toFixed(2) + " cm²";
-		var ppa      = elements[i].pricePerArea.toFixed(4) + " €/cm²";
-		if (doCompare && i > 0) {
-			diameter += ` (${comparisionPercent(elements[i].diameter    , elements[i-1].diameter    )})`
-			price    += ` (${comparisionPercent(elements[i].price       , elements[i-1].price       )})`
-			area     += ` (${comparisionPercent(elements[i].area        , elements[i-1].area        )})`
-			ppa      += ` (${comparisionPercent(elements[i].pricePerArea, elements[i-1].pricePerArea)})`
-		}
+	const body = table.createTBody();
+    elements.forEach(element => {
+        const row = body.insertRow();
+        row.innerHTML = `
+            <td>${element.diameter} cm</td>
+            <td>${element.price} €</td>
+            <td>${element.area.toFixed(2)} cm²</td>
+            <td>${element.pricePerArea.toFixed(4)} €/cm²</td>
+            <td><span class="material-symbols-outlined" style="cursor: pointer;">delete</span></td>
+        `;
 
-		row.insertCell(j++).innerHTML = diameter;
-		row.insertCell(j++).innerHTML = price;
-		row.insertCell(j++).innerHTML = area;
-		row.insertCell(j++).innerHTML = ppa;
+        // Add delete functionality
+        row.querySelector('span').onclick = function() {
+            const rowIndex = this.parentNode.parentNode.rowIndex;
+            document.getElementById("table").deleteRow(rowIndex);
+            elements.splice(rowIndex - 1, 1);
+            updateTable();
+        };
+    });
 
-		var span = document.createElement("SPAN");
-		var txt = document.createTextNode("\u00D7");
-		span.appendChild(txt);
-		span.onclick = function() {
-			// remove from elements and update table
-			var rowIndex = this.parentNode.parentNode.rowIndex;
-			document.getElementById("myTable").deleteRow(rowIndex);
-			elements.splice(rowIndex-1, 1);
-			updateTable();
-		}
-		row.insertCell(j++).appendChild(span);
-
-		table.appendChild(row);
-	}
-
-	// Show the comparison checkbox
-	if (elements.length >= 2) {
-		document.getElementById("comparisonDiv").style.display = "inline"
+	console.log(elements);
+	if (elements.length <= 0) {
+		const row = body.insertRow();
+		row.innerHTML = `
+		<td colspan="5">
+			<p class="center-horizontally" style="opacity: .38; margin: 5px">
+				No pizzas added yet
+			</p>
+		</td>
+		`;
 	}
 }
 
 // Create a new list item when clicking on the "Add" button
 function newElement() {
-	var diameter = document.getElementById("diameterInput").value;
-	var price    = document.getElementById("priceInput").value;
+	var diameter = document.getElementById("diameter-input").value;
+	var price    = document.getElementById("price-input").value;
 	
 	if (diameter === '' || price === '') {
 		alert("Please fill in all fields");

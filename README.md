@@ -11,3 +11,4 @@ https://github.com/maicol07/material-web-additions
 ### Rollup usage
 
 `npx rollup -p @rollup/plugin-node-resolve <source_file>.js -o <rolled_up_file>.js`
+(configured as vscode task)
