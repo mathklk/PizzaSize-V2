@@ -1,14 +1,16 @@
-https://material-web.dev/components/text-field/
-https://github.com/maicol07/material-web-additions
+# 🍕 Pizza Size Calculator 🍕
+
+Website for calculating and comparing pizza sizes.
+
+![Tutorial Video](docs/tutorial.gif)
 
 ## Dependencies
 
 - nodejs (`winget install OpenJS.Nodejs`)
 - rollup npm package (`npm install rollup`)
 - Material-Web (will be installed automatically by rollup)
-- Material Web Additions (`npm install @maicol07/material-web-additions`)
 
-### Rollup usage
+## Rollup usage
 
 `npx rollup -p @rollup/plugin-node-resolve <source_file>.js -o <rolled_up_file>.js`
 (configured as vscode task)
