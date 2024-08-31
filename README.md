@@ -1,4 +1,4 @@
-# 🍕 Pizza Size Calculator 🍕
+# 🍕 [Pizza Size Calculator](https://mathklk.github.io/PizzaSize-V2/dist/index.html) 🍕
 
 Website for calculating and comparing pizza sizes.
 
